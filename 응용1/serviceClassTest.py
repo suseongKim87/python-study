@@ -48,6 +48,7 @@ print(b.a,"*",b.b,"=",b.mul())
 print(b.a,"-",b.b,"=",b.sub())
 print(b.a,"/",b.b,"=",b.div())
 
+#클래스 기능 만들기
 class HousePark:
     lastname = "박"
 
@@ -58,5 +59,37 @@ class HousePark:
         self.traval = traval
         return ("%s, %s여행을 가다." % (self.fullname, self.traval))
 
+    def love(self, other):
+        print("%s와 %s가 사랑에 빠졌네" % (self.fullname, other.fullname))
+
+    #연산자 오버라이딩
+    def __add__(self, other):
+        print("%s와 %s가 결혼을 했네" %(self.fullname, other.fullname))
+
 pey = HousePark("응용")
 print(pey.traval("부산"))
+
+#클래스상속(inheritance)
+class HouseKim(HousePark):
+    lastname = "김"
+
+juliet = HouseKim("줄리엣")
+print(juliet.traval("독도"))
+
+#클래스 오버라이딩
+class HouseLee(HousePark):
+    lastname = "이"
+
+    def traval(self, traval, day):
+        self.traval = traval
+        self.day = day
+        return ("%s, %s여행을 %d일 가다." % (self.fullname, self.traval, self.day))
+
+romeo = HouseLee("로미오")
+print(romeo.traval("독도",3))
+
+#연산자 오버라이딩
+juliet = HouseKim("줄리엣")
+romeo = HouseLee("로미오")
+juliet+romeo
+
